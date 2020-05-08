@@ -21,8 +21,7 @@
       "tagName": "v${version}",
       "requireCommits": false,
       "requireCleanWorkingDir": false,
-      "requireUpstream": false,
-      "commitMessage": "Release ${name} ${version} [ci skip]"
+      "requireUpstream": false
     },
     "plugins": {
       "release-it-yarn-workspaces": {
