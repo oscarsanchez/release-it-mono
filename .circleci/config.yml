@@ -39,9 +39,6 @@ jobs:
       - run:
           name: Build
           command: |
-            mkdir ~/.ssh/ && echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
-            git config --global user.email "oscar@loungelogic.tv"
-            git config --global user.name "oscar"
             yarn release -- minor --ci
       - persist_to_workspace:
           root: ~/release-it-mono
