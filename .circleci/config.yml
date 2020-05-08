@@ -1,16 +1,57 @@
-version: 2.1
-orbs:
-  node: circleci/node@10.10.0
+defaults: &common-config
+  working_directory: ~/release-it-mono
+  docker:
+    - image: circleci/node:10
+
+restore_cache_config: &restore-cache-config
+  name: Restore Yarn package cache
+  keys:
+    - yarn-packages-{{ checksum "yarn.lock" }}
+
+install_deps: &install-deps
+  name: Install dependencies
+  command: yarn install --frozen-lockfile
+
+save_cache_config: &save-cache-config
+  name: Save Yarn package cache
+  key: yarn-packages-{{ checksum "yarn.lock" }}
+  paths:
+    - node_modules
+
+version: 2
 jobs:
-  build-and-test:
-    executor:
-      name: node/default
+  install:
+    <<: *common-config
     steps:
       - checkout
-      - node/with-cache:
-          steps:
-            - run: yarn release -- minor --ci
+      - restore_cache: *restore-cache-config
+      - run: *install-deps
+      - save_cache: *save-cache-config
+      - persist_to_workspace:
+          root: ~/release-it-mono
+          paths:
+            - .
+  release-it:
+    <<: *common-config
+    steps:
+      - attach_workspace:
+          at: ~/release-it-mono
+      - run:
+          name: Build
+          command: yarn release -- minor --ci
+      - persist_to_workspace:
+          root: ~/release-it-mono
+          paths:
+            - .
+
 workflows:
-    build-and-test:
-      jobs:
-        - build-and-test
+  version: 2
+  build_deploy_test:
+    jobs:
+      - install:
+          filters:
+            branches:
+              only: master
+      - release-it:
+          requires:
+            - install
