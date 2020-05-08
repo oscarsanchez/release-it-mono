@@ -19,8 +19,8 @@
   "release-it": {
     "git": {
       "tagName": "v${version}",
-      "requireCleanWorkingDir": false,
-      "requireUpstream": false
+      "requireBranch": ["develop", "master", "hotfix-*", "release-*"],
+      "requireCommits": true
     },
     "plugins": {
       "release-it-yarn-workspaces": {

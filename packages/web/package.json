@@ -31,16 +31,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "release-it": {
-    "git": {
-      "tagName": "web-v${version}",
-      "requireCleanWorkingDir": false,
-      "requireUpstream": false
-    },
-    "npm": false
-  },
-  "devDependencies": {
-    "release-it": "^13.5.8"
   }
 }

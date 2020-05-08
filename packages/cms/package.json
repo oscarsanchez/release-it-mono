@@ -31,18 +31,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "release-it": {
-    "git": {
-      "tagName": "cms-v${version}",
-      "requireCleanWorkingDir": false,
-      "requireUpstream": false
-    },
-    "npm": {
-      "publish": false
-    },
-    "plugins": {
-      "release-it-yarn-workspaces": true
-    }
   }
 }
