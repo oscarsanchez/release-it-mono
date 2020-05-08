@@ -36,9 +36,6 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/release-it-mono
-      - add_ssh_keys:
-          fingerprints:
-            - "d8:03:dd:74:d7:37:d7:db:cd:d4:24:0f:75:ef:72:40"
       - run:
           name: Build
           command: yarn release -- minor --ci
