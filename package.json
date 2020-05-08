@@ -1,7 +1,7 @@
 {
   "name": "root",
   "private": true,
-  "version": "0.2.1",
+  "version": "0.2.2",
   "devDependencies": {
     "lerna": "^3.20.2",
     "release-it": "^13.5.8",
@@ -19,7 +19,12 @@
   "release-it": {
     "git": {
       "tagName": "v${version}",
-      "requireBranch": ["develop", "master", "hotfix-*", "release-*"],
+      "requireBranch": [
+        "develop",
+        "master",
+        "hotfix-*",
+        "release-*"
+      ],
       "requireCommits": true
     },
     "plugins": {
