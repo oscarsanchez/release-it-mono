@@ -36,12 +36,11 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/release-it-mono
-      - add_ssh_keys:
-          fingerprints:
-            - "e7:83:43:ff:29:14:39:74:17:e2:c2:fe:eb:2d:2a:19"
       - run:
           name: Build
-          command: yarn release -- minor --ci
+          command: |
+          echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
+          yarn release -- minor --ci
       - persist_to_workspace:
           root: ~/release-it-mono
           paths:
