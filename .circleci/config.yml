@@ -39,7 +39,7 @@ jobs:
       - run:
           name: Build
           command: |
-            echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
+            mkdir ~/.ssh/ && echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
             yarn release -- minor --ci
       - persist_to_workspace:
           root: ~/release-it-mono
