@@ -38,7 +38,7 @@ jobs:
           at: ~/release-it-mono
       - add_ssh_keys:
           fingerprints:
-            - "c2:82:37:31:18:4c:94:0f:7d:16:01:59:07:ba:c3:0a"
+            - "d8:03:dd:74:d7:37:d7:db:cd:d4:24:0f:75:ef:72:40"
       - run:
           name: Build
           command: yarn release -- minor --ci
