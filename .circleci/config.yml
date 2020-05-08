@@ -39,6 +39,7 @@ jobs:
       - run:
           name: Build
           command: |
+            ssh-keyscan -p 443 ssh.github.com >> ~/.ssh/known_hosts
             yarn release -- minor --ci
       - persist_to_workspace:
           root: ~/release-it-mono
