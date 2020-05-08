@@ -22,7 +22,7 @@
       "requireCommits": false,
       "requireCleanWorkingDir": false,
       "requireUpstream": false,
-      "commitMessage": "Release ${name} ${version} [ci skip]"
+      "commitMessage": "Release ${version} [ci skip]"
     },
     "plugins": {
       "release-it-yarn-workspaces": {
