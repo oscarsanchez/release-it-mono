@@ -19,12 +19,6 @@
   "release-it": {
     "git": {
       "tagName": "v${version}",
-      "requireBranch": [
-        "develop",
-        "master",
-        "hotfix-*",
-        "release-*"
-      ],
       "requireCommits": false,
       "requireCleanWorkingDir": false
     },
