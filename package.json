@@ -20,7 +20,8 @@
     "git": {
       "tagName": "v${version}",
       "requireCommits": false,
-      "requireCleanWorkingDir": false
+      "requireCleanWorkingDir": false,
+      "requireUpstream": false
     },
     "plugins": {
       "release-it-yarn-workspaces": {
