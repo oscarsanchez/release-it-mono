@@ -1,0 +1,27 @@
+{
+  "name": "root",
+  "private": true,
+  "devDependencies": {
+    "lerna": "^3.20.2",
+    "release-it": "^13.5.8",
+    "release-it-yarn-workspaces": "^1.4.0"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "bootstrap": "lerna bootstrap",
+    "dev": "lerna run dev --parallel",
+    "build": "lerna run build --parallel",
+    "release": "release-it"
+  },
+  "release-it": {
+    "plugins": {
+      "release-it-yarn-workspaces": {
+        "publish": false,
+        "workspaces": ["packages/*"]
+      }
+    },
+    "npm": false
+  }
+}
