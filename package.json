@@ -1,6 +1,7 @@
 {
   "name": "root",
   "private": true,
+  "version": "0.1.0",
   "devDependencies": {
     "lerna": "^3.20.2",
     "release-it": "^13.5.8",
@@ -16,11 +17,10 @@
     "release": "release-it"
   },
   "release-it": {
-    "plugins": {
-      "release-it-yarn-workspaces": {
-        "publish": false,
-        "workspaces": ["packages/*"]
-      }
+    "git": {
+      "tagName": "v${version}",
+      "requireCleanWorkingDir": false,
+      "requireUpstream": false
     },
     "npm": false
   }
