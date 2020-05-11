@@ -44,9 +44,12 @@ jobs:
       - run:
           name: Build
           command: |
+            INCREMENT=patch
+            [[ $CIRCLE_BRANCH = rc-* ]] && INCREMENT=major
+            [[ $CIRCLE_BRANCH = hotfix-* ]] && INCREMENT=minor
             mkdir -p ~/.ssh && ssh-keyscan github.com >> ~/.ssh/known_hosts
             git config --global user.name "release-it-bot"
-            yarn release -- minor --ci
+            yarn release -- $INCREMENT --ci
       - persist_to_workspace:
           root: ~/release-it-mono
           paths:
@@ -59,7 +62,10 @@ workflows:
       - install:
           filters:
             branches:
-              only: master
+              only: 
+                - master
+                - /rc-.*/
+                - /hotfix-.*/
       - release-it:
           requires:
             - install
