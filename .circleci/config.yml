@@ -55,7 +55,7 @@ jobs:
             echo $SKIP
             [[ ( $CIRCLE_BRANCH = master || $CIRCLE_BRANCH = release-*  || $CIRCLE_BRANCH = hotfix-* ) && $SKIP = true ]] && DOJOB=false
             echo $DOJOB
-            [[ $DOJOB = true ]] && echo "will do job"
+            [[ $DOJOB = true ]] && (yarn release -- $INCREMENT --ci)
             [[ $DOJOB = false ]] && echo "will not do the job"
       - persist_to_workspace:
           root: ~/release-it-mono
