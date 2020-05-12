@@ -75,5 +75,3 @@ workflows:
                 - master
                 - /release-.*/
                 - /hotfix-.*/
-            tags:
-              ignore: /.*/
