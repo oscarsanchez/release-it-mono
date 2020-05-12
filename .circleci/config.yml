@@ -54,7 +54,8 @@ jobs:
             ls
             git branch --contains HEAD~1 | grep -q -E '(release|hotfix)-'  && SKIP=true
             [[ ( $CIRCLE_BRANCH = master || $CIRCLE_BRANCH = release-*  || $CIRCLE_BRANCH = hotfix-* ) && $SKIP = true ]] && DOJOB=false
-            [[ $DOJOB = true ]] && yarn release -- $INCREMENT --ci
+            [[ $DOJOB = true ]] && echo "will do job"
+            [[ $DOJOB = false ]] && echo "will not do the job"
       - persist_to_workspace:
           root: ~/release-it-mono
           paths:
