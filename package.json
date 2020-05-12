@@ -19,7 +19,7 @@
   "release-it": {
     "git": {
       "tagName": "v${version}",
-      "requireCommits": false,
+      "requireCommits": true,
       "requireCleanWorkingDir": false,
       "requireUpstream": false,
       "commitMessage": "Release ${version} [ci skip]"
