@@ -11,7 +11,7 @@ function App() {
           release v2.0.0 PLEASE!!!
           feature x
           adsasdas
-          
+          help
         </p>
         <a
           className="App-link"
