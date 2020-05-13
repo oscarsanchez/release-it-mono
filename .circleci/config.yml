@@ -51,7 +51,12 @@ jobs:
             [[ $CIRCLE_BRANCH = hotfix-* ]] && INCREMENT=patch
             mkdir -p ~/.ssh && ssh-keyscan github.com >> ~/.ssh/known_hosts
             git config --global user.name "release-it-bot"
-            git branch -r --contains HEAD~1
+            git branch -r --contains HEAD~1 | grep -q -E '(release|hotfix)-'  && SKIP=true
+            echo $SKIP
+            [[ ( $CIRCLE_BRANCH = master ) && $SKIP = true ]] && DOJOB=false
+            echo $DOJOB
+            [[ $DOJOB = true ]] && (yarn release -- $INCREMENT --ci)
+            [[ $DOJOB = false ]] && echo "will not do the job"
             echo "done"
       - persist_to_workspace:
           root: ~/release-it-mono
