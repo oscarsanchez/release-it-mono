@@ -44,20 +44,10 @@ jobs:
       - run:
           name: Build
           command: |
-            INCREMENT=minor
-            SKIP=false
-            DOJOB=true
-            [[ $CIRCLE_BRANCH = release-* ]] && INCREMENT=major
-            [[ $CIRCLE_BRANCH = hotfix-* ]] && INCREMENT=patch
-            mkdir -p ~/.ssh && ssh-keyscan github.com >> ~/.ssh/known_hosts
-            git config --global user.name "release-it-bot"
-            git branch -r --contains HEAD~1 | grep -q -E '(release|hotfix)-'  && SKIP=true
-            echo $SKIP
-            [[ ( $CIRCLE_BRANCH = master ) && $SKIP = true ]] && DOJOB=false
-            echo $DOJOB
-            [[ $DOJOB = true ]] && (yarn release -- $INCREMENT --ci)
-            [[ $DOJOB = false ]] && echo "will not do the job"
-            echo "done"
+            echo $CIRCLE_BRANCH
+            echo $CIRCLE_COMPARE_URL
+            echo $CIRCLE_PULL_REQUEST
+            echo $CIRCLE_TAG
       - persist_to_workspace:
           root: ~/release-it-mono
           paths:
