@@ -46,8 +46,11 @@ jobs:
           command: |
             echo $CIRCLE_BRANCH
             echo $CIRCLE_COMPARE_URL
-            echo $CIRCLE_PULL_REQUEST
-            echo $CIRCLE_TAG
+            INCREMENT=minor
+            DO_JOB=true
+            PUSH=notfirst
+            [[ $CIRCLE_COMPARE_URL ]] && PUSH=first
+            echo $PUSH
       - persist_to_workspace:
           root: ~/release-it-mono
           paths:
