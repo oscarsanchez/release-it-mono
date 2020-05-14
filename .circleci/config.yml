@@ -46,11 +46,7 @@ jobs:
           command: |
             echo $CIRCLE_BRANCH
             echo $CIRCLE_COMPARE_URL
-            INCREMENT=minor
-            DO_JOB=true
-            PUSH=notfirst
-            [[ $CIRCLE_COMPARE_URL ]] && PUSH=first
-            echo $PUSH
+            [[ -z "$CIRCLE_COMPARE_URL" ]] && echo "Empty" || echo "Not empty"
       - persist_to_workspace:
           root: ~/release-it-mono
           paths:
