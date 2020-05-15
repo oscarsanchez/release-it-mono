@@ -46,7 +46,11 @@ jobs:
           command: |
             echo $CIRCLE_BRANCH
             echo $CIRCLE_COMPARE_URL
-            [[ -z "$CIRCLE_COMPARE_URL" ]] && echo "Empty" || echo "Not empty"
+            [[ $CIRCLE_BRANCH = master ]] && INCREMENT=skip
+            [[ $CIRCLE_BRANCH = release-*  && -z "$CIRCLE_COMPARE_URL" ]] && INCREMENT=major
+            [[ $CIRCLE_BRANCH = release-* &&  -n "$CIRCLE_COMPARE_URL"]] && INCREMENT=minor
+            [[ $CIRCLE_BRANCH = hotfix-* ]] && INCREMENT=patch
+            echo $INCREMENT
       - persist_to_workspace:
           root: ~/release-it-mono
           paths:
