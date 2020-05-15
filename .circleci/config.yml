@@ -53,7 +53,7 @@ jobs:
             [[ $CIRCLE_BRANCH = master && ! -z "$SKIP" ]] && INCREMENT="--no-git --no-increment"
             [[ $CIRCLE_BRANCH = release-*  && -z "$CIRCLE_COMPARE_URL" ]] && INCREMENT="-- major"
             [[ $CIRCLE_BRANCH = hotfix-* ]] && INCREMENT="-- patch"
-            echo $INCREMENT
+            yarn release $INCREMENT --ci
       - persist_to_workspace:
           root: ~/release-it-mono
           paths:
