@@ -48,11 +48,11 @@ jobs:
             git config --global user.name "release-it-bot"
             echo $CIRCLE_BRANCH
             echo $CIRCLE_COMPARE_URL
-            IS_MERGE=$(git branch -r --contains HEAD~1 | grep -E '(release|hotfix)-')
-            INCREMENT=-- minor
-            [[ $CIRCLE_BRANCH = master && ! -z "$IS_MERGE" ]] && INCREMENT=--no-git --no-increment
-            [[ $CIRCLE_BRANCH = release-*  && -z "$CIRCLE_COMPARE_URL" ]] && INCREMENT=-- major
-            [[ $CIRCLE_BRANCH = hotfix-* ]] && INCREMENT=-- patch
+            git branch -r --contains HEAD~1 | grep -q -E '(release|hotfix)-' && SKIP=true
+            INCREMENT=minor
+            [[ $CIRCLE_BRANCH = master && ! -z "$SKIP" ]] && INCREMENT=no-git --no-increment
+            [[ $CIRCLE_BRANCH = release-*  && -z "$CIRCLE_COMPARE_URL" ]] && INCREMENT=major
+            [[ $CIRCLE_BRANCH = hotfix-* ]] && INCREMENT=patch
             echo $INCREMENT
       - persist_to_workspace:
           root: ~/release-it-mono
