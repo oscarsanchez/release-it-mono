@@ -46,7 +46,8 @@ jobs:
           command: |
             mkdir -p ~/.ssh && ssh-keyscan github.com >> ~/.ssh/known_hosts
             git config --global user.name "release-it-bot"
-            git branch -r --contains HEAD~1 | grep -q -E '(release|hotfix)-' && SKIP=true
+            PREVIOUS=$(git log -n 1 --skip 1 --pretty=format:"%H")
+            git branch -r --contains $PREVIOUS | grep -q -E '(release|hotfix)-' && SKIP=true
             INCREMENT="-- minor"
             [[ $CIRCLE_BRANCH = master && ! -z "$SKIP" ]] && INCREMENT="--no-git --no-increment"
             [[ $CIRCLE_BRANCH = release-*  && -z "$CIRCLE_COMPARE_URL" ]] && INCREMENT="-- major"
